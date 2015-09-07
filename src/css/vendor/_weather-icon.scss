@@ -4,6 +4,11 @@
  * Author: Josh Bader (http://codepen.io/joshbader/)
  * ---------------------------------------------------- */
 
+.icon {
+  position: relative;
+  height: 10em;
+}
+
 .cloud {
   position: absolute;
   z-index: 1;
