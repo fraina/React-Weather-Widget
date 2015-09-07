@@ -7,8 +7,6 @@ Thumbs.db
 *.sublime-workspace
 .tags
 .idea/
-.sass-cache/
 bower_components/
 node_modules/
 build/
-.cache/
