@@ -37,7 +37,7 @@
 }
 .cloud:nth-child(2) {
   z-index: 0;
-  background: $c-iconBackground;
+  background: $c-iconLine;
   box-shadow:
     -2.1875em 0.6875em 0 -0.6875em $c-iconLine,
     2.0625em 0.9375em 0 -0.9375em $c-iconLine,
@@ -49,6 +49,7 @@
   animation: cloud 4s linear infinite;
 }
 .cloud:nth-child(2):after { background: $c-iconBackground; }
+.cloud:nth-child(2):before { background: none; }
 
 .sun {
   position: absolute;
@@ -285,5 +286,15 @@
 // windy icon
 
 svg {
+  position: absolute;
   width: 150px;
+  left: 50%;
+  margin-left: -75px;
+  animation: shake 20s linear infinite reverse;
+}
+
+@keyframes shake {
+    0%, 100% {transform: translateX(0);}
+    10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+    20%, 40%, 60%, 80% {transform: translateX(5px);}
 }
