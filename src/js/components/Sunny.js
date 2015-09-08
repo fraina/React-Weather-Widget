@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Sunny extends Component {
+  static defaultProps = { night: false };
+
   render() {
     return (
       <div className="icon">
@@ -11,7 +13,3 @@ export default class Sunny extends Component {
     );
   }
 }
-
-Sunny.propTypes = {
-  night: PropTypes.bool
-};

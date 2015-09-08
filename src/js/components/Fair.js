@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Fair extends Component {
+  static defaultProps = { night: false };
+
   render() {
     return (
       <div className="icon">
@@ -12,7 +14,3 @@ export default class Fair extends Component {
     );
   }
 }
-
-Fair.propTypes = {
-  night: PropTypes.bool
-};

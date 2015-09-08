@@ -77,9 +77,12 @@
   display: table-cell
   width: 9999px
   padding-top: 16px
+  &.is-passed
+    background-color: MDcolor(grey, 50)
+    .weather-weekday
+      color: MDcolor(grey, 300)
   &.is-today
     top: -1px
-    height: 45px
     border: 1px rgba($c-less, .2) solid
     border-top: 1px white solid
     border-bottom: 0
@@ -96,7 +99,6 @@
     width: 100%
     text-align: center
     display: block
-    background-color: #fff
     color: $c-less
 
   .icon

@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { fetchData } from 'actions';
 import { Cloudy, Fair, Flurries, Rainy, SunShower, Sunny, ThunderStorm, Windy } from 'components';
 
 export default class App extends Component {
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchData('Taichung');
   }
 
   onClickTemp(e) {
@@ -64,6 +65,8 @@ export default class App extends Component {
       <ThunderStorm />
     ]
 
+    const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
     return (
       <div className="weather">
         <div className="weather-today">
@@ -86,34 +89,20 @@ export default class App extends Component {
         </div>
         <div className="weather-week">
           <ul className="weather-days">
-            <li className="weather-day">
-              <span className="weather-weekday">SUN</span>
-              <Sunny />
-            </li>
-            <li className="weather-day">
-              <span className="weather-weekday">MON</span>
-              <Sunny />
-            </li>
-            <li className="weather-day is-today">
-              <span className="weather-weekday">TUE</span>
-              <Sunny />
-            </li>
-            <li className="weather-day">
-              <span className="weather-weekday">WED</span>
-              <Sunny />
-            </li>
-            <li className="weather-day">
-              <span className="weather-weekday">THU</span>
-              <Sunny />
-            </li>
-            <li className="weather-day">
-              <span className="weather-weekday">FRI</span>
-              <Sunny />
-            </li>
-            <li className="weather-day">
-              <span className="weather-weekday">SAT</span>
-              <Sunny />
-            </li>
+            {weekdays.map((value, index) => {
+              const { day, forecast } = this.props.today;
+              const today = (value.toUpperCase() == day.toUpperCase()) ? true : false;
+              const passDays = 7 - (forecast.length);
+              const currentForecastIndex = index - passDays;
+              const currentForecast = forecast[currentForecastIndex];
+              return (
+                <li key={index} ref={value}
+                  className={classNames("weather-day", { 'is-today': today, 'is-passed': !currentForecast })}>
+                  <span className="weather-weekday">{value}</span>
+                  {currentForecast ? mapping[currentForecast.code] : ''}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>

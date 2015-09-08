@@ -2,7 +2,9 @@ import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE } from 'actions';
 
 const initialState = {
   local: 'Loading',
-  degree: '--'
+  day: 'unknow',
+  degree: '--',
+  forecast: []
 };
 
 export default function Today(state = initialState, action) {
@@ -13,15 +15,17 @@ export default function Today(state = initialState, action) {
         item: { forecast, condition },
       } = action.json.query.results.channel;
 
-      const { date } = forecast[0];
+      const { date, day } = forecast[0];
       const { code, temp, text } = condition;
 
       return {
         local: city,
         date: date,
+        day: day,
         type: text,
         code: code,
-        degree: temp
+        degree: temp,
+        forecast: forecast
       }
       return state;
 
