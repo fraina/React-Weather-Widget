@@ -9,7 +9,7 @@ export default class App extends Component {
     this.props.fetchData('Taichung');
     this.timer = setInterval(() => {
       this.props.fetchData('Taichung');
-    }, 50000)
+    }, 300000)  // 5 min
   }
 
   componentWillUnmount() {
