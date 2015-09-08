@@ -17,40 +17,38 @@
   width: 3.6875em;
   height: 3.6875em;
   margin: -1.84375em;
-  background: currentColor;
+  background: $c-iconBackground;
   border-radius: 50%;
   box-shadow:
     -2.1875em 0.6875em 0 -0.6875em,
     2.0625em 0.9375em 0 -0.9375em,
-    0 0 0 0.375em #fff,
-    -2.1875em 0.6875em 0 -0.3125em #fff,
-    2.0625em 0.9375em 0 -0.5625em #fff;
+    0 0 0 0.375em $c-iconLine,
+    -2.1875em 0.6875em 0 -0.3125em $c-iconLine,
+    2.0625em 0.9375em 0 -0.5625em $c-iconLine;
+  color: $c-iconBackground;
 }
-.cloud:after {
+.cloud:before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: -0.5em;
-  display: block;
-  width: 4.5625em;
-  height: 1em;
-  background: currentColor;
-  box-shadow: 0 0.4375em 0 -0.0625em #fff;
+  width: inherit;
+  height: inherit;
+  border-radius: 47.5%;
+  background-color: #fff;
 }
 .cloud:nth-child(2) {
   z-index: 0;
-  background: #fff;
+  background: $c-iconBackground;
   box-shadow:
-    -2.1875em 0.6875em 0 -0.6875em #fff,
-    2.0625em 0.9375em 0 -0.9375em #fff,
-    0 0 0 0.375em #fff,
-    -2.1875em 0.6875em 0 -0.3125em #fff,
-    2.0625em 0.9375em 0 -0.5625em #fff;
+    -2.1875em 0.6875em 0 -0.6875em $c-iconLine,
+    2.0625em 0.9375em 0 -0.9375em $c-iconLine,
+    0 0 0 0.375em $c-iconLine,
+    -2.1875em 0.6875em 0 -0.3125em $c-iconLine,
+    2.0625em 0.9375em 0 -0.5625em $c-iconLine;
   opacity: 0.3;
   transform: scale(0.5) translate(6em, -3em);
   animation: cloud 4s linear infinite;
 }
-.cloud:nth-child(2):after { background: #fff; }
+.cloud:nth-child(2):after { background: $c-iconBackground; }
 
 .sun {
   position: absolute;
@@ -59,9 +57,9 @@
   width: 2.5em;
   height: 2.5em;
   margin: -1.25em;
-  background: currentColor;
+  background: $c-iconBackground;
   border-radius: 50%;
-  box-shadow: 0 0 0 0.375em #fff;
+  box-shadow: 0 0 0 0.375em $c-iconLine;
   animation: spin 12s infinite linear;
 }
 .rays {
@@ -72,9 +70,9 @@
   width: 0.375em;
   height: 1.125em;
   margin-left: -0.1875em;
-  background: #fff;
+  background: $c-iconLine;
   border-radius: 0.25em;
-  box-shadow: 0 5.375em #fff;
+  box-shadow: 0 5.375em $c-iconLine;
 }
 .rays:before,
 .rays:after {
@@ -87,9 +85,9 @@
   height: 1.125em;
   transform: rotate(60deg);
   transform-origin: 50% 3.25em;
-  background: #fff;
+  background: $c-iconLine;
   border-radius: 0.25em;
-  box-shadow: 0 5.375em #fff;
+  box-shadow: 0 5.375em $c-iconLine;
 }
 .rays:before {
   transform: rotate(120deg);
@@ -108,7 +106,7 @@
   width: 3.75em;
   height: 3.75em;
   margin: 0.375em 0 0 -2em;
-  background: currentColor;
+  background: $c-iconBackground;
 }
 
 .rain:after {

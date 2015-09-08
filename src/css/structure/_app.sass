@@ -1,7 +1,102 @@
 .weather
-  width: 640px
-  height: 300px
-  background-color: black
+  position: absolute
+  width: 360px
+  height: 330px
+  top: 50%
+  left: 50%
+  margin: -165px 0 0 -180px
+  background-color: white
+  box-shadow: 0 2px 2px rgba(black, .3)
 
 .weather-today
+  overflow: hidden
+  padding-bottom: 1em
+  border-bottom: 1px rgba($c-less, .2) solid
+
+.weather-info
+  position: relative
+  padding: 2em
+  span
+    display: block
+
+.weather-detail
+  float: left
+
+.weather-local
+  color: $c-main
+  font-weight: bold
+  font-size: 1.2em
+
+.weather-date
+  color: $c-less
+  font-size: .8em
+
+.weather-type
+  color: $c-main
+
+.weather-temp
+  float: right
+
+.weather-degree
+  position: relative
+  font-size: 3.2em
+  margin-right: .3em
+  color: $c-main
+
+  .weather-temperature
+    position: absolute
+    font-size: .4em
+    top: .3em
+    right: -1em
+    cursor: pointer
+    &:hover
+      color: MDcolor(blue-grey, 400)
+
+.weather-week
+  position: absolute
+  font-size: .7em
+  width: 100%
+  height: 60px
+
+.weather-days
+  margin: 0
+  padding: 0
+  list-style: none
+  display: table
+  width: 100%
   height: 100%
+
+.weather-day
+  position: relative
+  display: table-cell
+  width: 9999px
+  padding-top: 16px
+  &.is-today
+    top: -1px
+    height: 45px
+    border: 1px rgba($c-less, .2) solid
+    border-top: 1px white solid
+    border-bottom: 0
+    .icon
+      visibility: hidden
+    .weather-weekday
+      top: 23px
+      color: $c-main
+      font-weight: bold
+
+  .weather-weekday
+    position: absolute
+    top: 5px
+    width: 100%
+    text-align: center
+    display: block
+    background-color: #fff
+    color: $c-less
+
+  .icon
+    height: 25px
+    margin-top: 6px
+    -webkit-transform: scale(0.3)
+    -moz-transform: scale(0.3)
+    -o-transform: scale(0.3)
+    transform: scale(0.3)
