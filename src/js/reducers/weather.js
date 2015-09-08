@@ -7,7 +7,7 @@ const initialState = {
   forecast: []
 };
 
-export default function Today(state = initialState, action) {
+export default function Weather(state = initialState, action) {
   switch (action.type) {
     case FETCH_SUCCESS:
       const {

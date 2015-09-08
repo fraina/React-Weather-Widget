@@ -66,22 +66,23 @@ export default class App extends Component {
     ]
 
     const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const { local, date, type, degree, code, day, forecast } = this.props.weather;
 
     return (
       <div className="weather">
         <div className="weather-today">
           <div className="weather-icon">
-            {mapping[this.props.today.code]}
+            {mapping[code]}
           </div>
           <div className="weather-info">
             <div className="weather-detail">
-              <span className="weather-local">{this.props.today.local}</span>
-              <span className="weather-date">{this.props.today.date}</span>
-              <span className="weather-type">{this.props.today.type}</span>
+              <span className="weather-local">{local}</span>
+              <span className="weather-date">{date}</span>
+              <span className="weather-type">{type}</span>
             </div>
             <div className="weather-temp">
               <span className="weather-degree">
-                <span ref="degree">{this.props.today.degree}</span>
+                <span ref="degree">{degree}</span>
                 <span className="weather-temperature" onClick={this.onClickTemp}>F</span>
               </span>
             </div>
@@ -90,7 +91,6 @@ export default class App extends Component {
         <div className="weather-week">
           <ul className="weather-days">
             {weekdays.map((value, index) => {
-              const { day, forecast } = this.props.today;
               const today = (value.toUpperCase() == day.toUpperCase()) ? true : false;
               const passDays = 7 - (forecast.length);
               const currentForecastIndex = index - passDays;
@@ -111,15 +111,14 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  today: PropTypes.object.isRequired,
+  weather: PropTypes.object.isRequired,
   fetchData: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-  const { today } = state;
-
+  const { weather } = state;
   return {
-    today: today,
+    weather: weather,
   };
 }
 
