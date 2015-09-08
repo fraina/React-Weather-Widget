@@ -7,10 +7,13 @@ import { Cloudy, Fair, Flurries, Rainy, SunShower, Sunny, ThunderStorm, Windy } 
 export default class App extends Component {
   componentDidMount() {
     this.props.fetchData('Taichung');
+    this.timer = setInterval(() => {
+      this.props.fetchData('Taichung');
+    }, 50000)
   }
 
-  onClickTemp(e) {
-    console.log(e.currentTarget);
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   render() {
@@ -83,7 +86,7 @@ export default class App extends Component {
             <div className="weather-temp">
               <span className="weather-degree">
                 <span ref="degree">{degree}</span>
-                <span className="weather-temperature" onClick={this.onClickTemp}>F</span>
+                <span className="weather-temperature">F</span>
               </span>
             </div>
           </div>
