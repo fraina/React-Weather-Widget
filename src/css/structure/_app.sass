@@ -8,6 +8,9 @@
   background-color: white
   box-shadow: 0 2px 2px rgba(black, .3)
 
+.weather-icon
+  height: 160px
+
 .weather-today
   overflow: hidden
   padding-bottom: 1em
@@ -49,6 +52,9 @@
     top: .3em
     right: -1em
     cursor: pointer
+    &:before
+      content: '°'
+      margin-right: -2px
     &:hover
       color: MDcolor(blue-grey, 400)
 

@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-export default class SunShower extends Component {
+export default class Fair extends Component {
   render() {
     return (
       <div className="icon">
         <div className="cloud"></div>
         <div className="sun">
-          <div className="rays"></div>
+          {this.props.night ? '' : <div className="rays"></div>}
         </div>
       </div>
     );
   }
 }
+
+Fair.propTypes = {
+  night: PropTypes.bool
+};

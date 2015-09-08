@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class SunShower extends Component {
+export default class Flurries extends Component {
   render() {
     return (
       <div className="icon">

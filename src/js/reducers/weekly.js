@@ -4,7 +4,7 @@ const initialState = {
 
 };
 
-export default function Time(state = initialState, action) {
+export default function Weekly(state = initialState, action) {
   switch (action.type) {
     case FETCH_SUCCESS:
       return state;
