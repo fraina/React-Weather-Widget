@@ -4,12 +4,27 @@ import { connect } from 'react-redux';
 import { fetchData } from 'actions';
 import { Cloudy, Fair, Flurries, Rainy, SunShower, Sunny, ThunderStorm, Windy } from 'components';
 
+const getURLParam = (oTarget, sVar) => {
+  return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+}
+
 export default class App extends Component {
   componentDidMount() {
-    this.props.fetchData('Taichung');
+    let city = 'Taiwan Taichung';   // default
+
+    const localParam = getURLParam(window.location, "l");
+    if (localParam) {
+      city = localParam;
+      if (window['localStorage']) window.localStorage.setItem('localtion', localParam);
+    } else if (window['localStorage'] && window.localStorage.getItem('localtion')) {
+      city = window.localStorage.getItem('localtion');
+    }
+
+    // interval
+    this.props.fetchData(city);
     this.timer = setInterval(() => {
-      this.props.fetchData('Taichung');
-    }, 300000)  // 5 min
+      this.props.fetchData(city);
+    }, 300000);  // 5 min
   }
 
   componentWillUnmount() {
@@ -66,7 +81,7 @@ export default class App extends Component {
       <ThunderStorm />,        // 45. thundershowers
       <Flurries />,            // 46. snow showers
       <ThunderStorm />         // 47. isolated thundershowers
-    ]
+    ];
 
     const {
       local,
