@@ -13,3 +13,7 @@ export default class Sunny extends Component {
     );
   }
 }
+
+Sunny.propTypes = {
+  night: PropTypes.bool,
+};

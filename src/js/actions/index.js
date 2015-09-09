@@ -12,6 +12,6 @@ export function fetchData(city) {
       .then(json => dispatch({
         type: FETCH_SUCCESS,
         json
-      }))
-  }
+      }));
+  };
 }

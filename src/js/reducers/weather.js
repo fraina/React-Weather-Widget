@@ -9,6 +9,9 @@ const initialState = {
 
 export default function Weather(state = initialState, action) {
   switch (action.type) {
+    case FETCH_REQUEST:
+      return state;
+
     case FETCH_SUCCESS:
       const {
         location: { city },
@@ -26,8 +29,7 @@ export default function Weather(state = initialState, action) {
         code: code,
         degree: temp,
         forecast: forecast
-      }
-      return state;
+      };
 
     default:
       return state;

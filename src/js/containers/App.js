@@ -5,8 +5,8 @@ import { fetchData } from 'actions';
 import { Cloudy, Fair, Flurries, Rainy, SunShower, Sunny, ThunderStorm, Windy } from 'components';
 
 const getURLParam = (oTarget, sVar) => {
-  return decodeURI(oTarget.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
-}
+  return decodeURI(oTarget.search.replace(new RegExp('^(?:.*[&\\?]' + encodeURI(sVar).replace(/[\.\+\*]/g, '\\$&') + '(?:\\=([^&]*))?)?.*$', 'i'), '$1'));
+};
 
 export default class App extends Component {
   constructor() {
@@ -21,8 +21,8 @@ export default class App extends Component {
     const localParam = getURLParam(window.location, 'l');
     if (localParam) {
       city = localParam;
-      if (window['localStorage']) window.localStorage.setItem('localtion', localParam);
-    } else if (window['localStorage'] && window.localStorage.getItem('localtion')) {
+      if (window.localStorage) window.localStorage.setItem('localtion', localParam);
+    } else if (window.localStorage && window.localStorage.getItem('localtion')) {
       city = window.localStorage.getItem('localtion');
     }
 
@@ -30,8 +30,8 @@ export default class App extends Component {
     const unitsParam = getURLParam(window.location, 'u').toUpperCase();
     if (unitsParam) {
       this.setState({ units: unitsParam });
-      if (window['localStorage']) window.localStorage.setItem('units', unitsParam);
-    } else if (window['localStorage'] && window.localStorage.getItem('units')) {
+      if (window.localStorage) window.localStorage.setItem('units', unitsParam);
+    } else if (window.localStorage && window.localStorage.getItem('units')) {
       this.setState({ units: window.localStorage.getItem('units') });
     }
 
@@ -42,31 +42,31 @@ export default class App extends Component {
     }, 300000);  // 5 min
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
   componentDidUpdate() {
     const $degreeElement = React.findDOMNode(this.refs.degree);
     const fahrenheit = this.props.weather.degree;
     const celsius = Math.floor((fahrenheit - 32) / 1.8);
 
-    if (fahrenheit != '--') {
+    if (fahrenheit !== '--') {
       $degreeElement.innerHTML = (this.state.units === 'C') ? celsius : fahrenheit;
     }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
   }
 
   onClickTemperatureUnit(e) {
     const target = e.currentTarget;
     const units = (target.innerHTML === 'F') ? 'C' : 'F';
     this.setState({units: units});
-    if (window['localStorage']) window.localStorage.setItem('units', units);
+    if (window.localStorage) window.localStorage.setItem('units', units);
   }
 
   render() {
     const mapping = [
       <Windy />,               //  0. tornado
-      <ThunderStorm />,        //  1. tropical storm
+      <SunShower />,           //  1. tropical storm
       <Windy />,               //  2. hurricane
       <ThunderStorm />,        //  3. severe thunderstorms
       <ThunderStorm />,        //  4. thunderstorms
@@ -127,14 +127,14 @@ export default class App extends Component {
 
     const forecastNextDays = forecast.map((value, index) => {
       const currentDay = value.day.toUpperCase();
-      const isToday = (currentDay == day.toUpperCase()) ? true : false;
+      const isToday = (currentDay === day.toUpperCase()) ? true : false;
       return (
         <li key={index} ref={value}
-          className={classNames("weather-day", { 'is-today': isToday })}>
+          className={classNames('weather-day', {'is-today': isToday})}>
           <span className="weather-weekday">{ currentDay }</span>
           { mapping[value.code] }
         </li>
-      )
+      );
     });
 
     return (

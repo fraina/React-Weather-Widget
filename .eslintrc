@@ -10,6 +10,8 @@
 
     // Disable until Flow supports let and const
     "no-var": 0,
-    "vars-on-top": 0
+    "vars-on-top": 0,
+    "comma-dangle": 0,
+    "block-scoped-var": 0
   }
 }

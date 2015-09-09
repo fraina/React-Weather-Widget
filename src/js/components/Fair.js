@@ -14,3 +14,7 @@ export default class Fair extends Component {
     );
   }
 }
+
+Fair.propTypes = {
+  night: PropTypes.bool,
+};
