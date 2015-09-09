@@ -9,15 +9,30 @@ const getURLParam = (oTarget, sVar) => {
 }
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = { units: 'F' };   // default
+  }
+
   componentDidMount() {
     let city = 'Taiwan Taichung';   // default
 
-    const localParam = getURLParam(window.location, "l");
+    // pass location by param
+    const localParam = getURLParam(window.location, 'l');
     if (localParam) {
       city = localParam;
       if (window['localStorage']) window.localStorage.setItem('localtion', localParam);
     } else if (window['localStorage'] && window.localStorage.getItem('localtion')) {
       city = window.localStorage.getItem('localtion');
+    }
+
+    // pass units of temperature by param
+    const unitsParam = getURLParam(window.location, 'u').toUpperCase();
+    if (unitsParam) {
+      this.setState({ units: unitsParam });
+      if (window['localStorage']) window.localStorage.setItem('units', unitsParam);
+    } else if (window['localStorage'] && window.localStorage.getItem('units')) {
+      this.setState({ units: window.localStorage.getItem('units') });
     }
 
     // interval
@@ -29,6 +44,23 @@ export default class App extends Component {
 
   componentWillUnmount() {
     clearInterval(this.timer);
+  }
+
+  componentDidUpdate() {
+    const $degreeElement = React.findDOMNode(this.refs.degree);
+    const fahrenheit = this.props.weather.degree;
+    const celsius = Math.floor((fahrenheit - 32) / 1.8);
+
+    if (fahrenheit != '--') {
+      $degreeElement.innerHTML = (this.state.units === 'C') ? celsius : fahrenheit;
+    }
+  }
+
+  onClickTemperatureUnit(e) {
+    const target = e.currentTarget;
+    const units = (target.innerHTML === 'F') ? 'C' : 'F';
+    this.setState({units: units});
+    if (window['localStorage']) window.localStorage.setItem('units', units);
   }
 
   render() {
@@ -120,7 +152,10 @@ export default class App extends Component {
             <div className="weather-temp">
               <span className="weather-degree">
                 <span ref="degree">{ degree }</span>
-                <span className="weather-temperature">F</span>
+                <span className="weather-temperature"
+                  onClick={this.onClickTemperatureUnit.bind(this)}>
+                    {this.state.units}
+                </span>
               </span>
             </div>
           </div>
