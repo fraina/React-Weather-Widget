@@ -1,4 +1,4 @@
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE } from 'actions';
+import { FETCH_REQUEST, FETCH_SUCCESS } from 'actions';
 
 const initialState = {
   local: 'Loading',
