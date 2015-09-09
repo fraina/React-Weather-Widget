@@ -1,6 +1,6 @@
 # React weather widget
 
-A simple weather widget made with React and Redux, using Yahoo Weather API.
+A simple weather widget made with React and Redux, using Yahoo Weather API. :sunny:
 
 ## Run locally
 
@@ -19,4 +19,10 @@ Set location and units of temperature by access URL parameters, and the state wi
 | l     | Taiwan Taichung | location name                   |
 | u     | f (Fahrenheit)  | units, can be set to 'c' or 'f' |
 
+e.g. http://localhost:4000/?l=NY&u=f
+
 Also, you can toggle units by click the units beside degree.
+
+## LICENSE
+
+MIT
