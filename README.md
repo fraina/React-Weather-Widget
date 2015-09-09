@@ -2,7 +2,9 @@
 
 A simple weather widget made with React and Redux, using Yahoo Weather API. :sunny:
 
-Inspired by [ANIMATED WEATHER ICONS](http://codepen.io/joshbader/pen/EjXgqr) by [Josh Bader](http://codepen.io/joshbader/)
+Most of those awesome weather icons are base on [ANIMATED WEATHER ICONS](http://codepen.io/joshbader/pen/EjXgqr) by [Josh Bader](http://codepen.io/joshbader/), made some changes to color for white background.
+
+And the windy icon base on [SVG icons animated with CSS](http://codepen.io/TechnotronicOz/pen/eokCA) by [Matt](http://codepen.io/TechnotronicOz/).
 
 ## Run locally
 
