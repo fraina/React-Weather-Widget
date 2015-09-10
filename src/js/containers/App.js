@@ -170,11 +170,11 @@ export default class App extends Component {
             <div className="weather-detail"
               onClick={ this.onClickLocationDetail.bind(this) }>
               <span className="weather-local">{ local }</span>
-              { ! this.state.moreDetail ?
+              { this.state.moreDetail ?
                 <div className="weather-more">
                   <div className="weather-moreTemp">
-                    <span className="weather-high" ref="highTemp">87</span>
-                    <span className="weather-low" ref="lowTemp">73</span>
+                    <span className="weather-high" ref="highTemp">--</span>
+                    <span className="weather-low" ref="lowTemp">--</span>
                   </div>
                   <div className="weather-moreDetail">
                     <span className="weather-windSpeed">&#9873; { humidity } mph</span>
