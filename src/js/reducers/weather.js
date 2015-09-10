@@ -4,6 +4,8 @@ const initialState = {
   local: 'Loading',
   day: 'unknow',
   degree: '--',
+  high: '--',
+  low: '--',
   forecast: []
 };
 

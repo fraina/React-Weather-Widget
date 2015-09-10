@@ -62,8 +62,10 @@ export default class App extends Component {
 
     if (degree !== '--') {
       $degreeElement.innerHTML = (this.state.units === 'C') ? getCelsius(degree) : degree;
-      $highTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(high) : high;
-      $lowTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(low) : low;
+      if ($highTempElement && $lowTempElement) {
+        $highTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(high) : high;
+        $lowTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(low) : low;
+      }
     }
   }
 
@@ -117,9 +119,9 @@ export default class App extends Component {
       <Cloudy />,              // 28. mostly cloudy (day)
       <Cloudy />,              // 29. partly cloudy (night)
       <Cloudy />,              // 30. partly cloudy (day)
-      <Sunny night="true" />,  // 31. clear (night)
+      <Sunny night={ true } />,// 31. clear (night)
       <Sunny />,               // 32. sunny
-      <Fair night="true" />,   // 33. fair (night)
+      <Fair night={ true } />, // 33. fair (night)
       <Fair />,                // 34. fair (day)
       <Rainy />,               // 35. mixed rain and hail
       <Sunny />,               // 36. hot
@@ -143,6 +145,8 @@ export default class App extends Component {
       windSpeed,
       type,
       degree,
+      high,
+      low,
       code,
       day,
       forecast
@@ -173,8 +177,8 @@ export default class App extends Component {
               { this.state.moreDetail ?
                 <div className="weather-more">
                   <div className="weather-moreTemp">
-                    <span className="weather-high" ref="highTemp">--</span>
-                    <span className="weather-low" ref="lowTemp">--</span>
+                    <span className="weather-high" ref="highTemp">{ high }</span>
+                    <span className="weather-low" ref="lowTemp">{ low }</span>
                   </div>
                   <div className="weather-moreDetail">
                     <span className="weather-windSpeed">&#9873; { humidity } mph</span>
