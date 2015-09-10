@@ -27,7 +27,7 @@ gh-page demo: [http://fraina.github.io/React-Weather-Widget/?l=NY&u=f](http://fr
 
 e.g. http://localhost:4000/?l=NY&u=f
 
-Also, you can toggle units by click the units beside degree.
+Also, you can toggle units by click the units beside degree, and click the detail area for more infomation.
 
 ## LICENSE
 
