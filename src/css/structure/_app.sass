@@ -29,6 +29,7 @@
 
 .weather-detail
   float: left
+  cursor: pointer
 
 .weather-local
   color: $c-main
@@ -109,3 +110,21 @@
     -moz-transform: scale(0.3)
     -o-transform: scale(0.3)
     transform: scale(0.3)
+
+.weather-moreTemp,
+.weather-moreDetail
+  font-size: .8em
+  color: MDcolor(grey, 600)
+  span
+    display: inline-block
+    margin: 0 .2em
+
+.weather-high:before
+  content: 'H: '
+
+.weather-low:before
+  content: 'L: '
+
+.weather-humidity,
+.weather-low:before
+  margin-left: 1em

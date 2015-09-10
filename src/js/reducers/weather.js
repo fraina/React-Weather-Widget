@@ -16,15 +16,21 @@ export default function Weather(state = initialState, action) {
       const {
         location: { city },
         item: { forecast, condition },
+        atmosphere: { humidity },
+        wind: { speed }
       } = action.json.query.results.channel;
 
-      const { date, day } = forecast[0];
+      const { date, day, high, low } = forecast[0];
       const { code, temp, text } = condition;
 
       return {
         local: city,
         date: date,
+        humidity: humidity,
+        windSpeed: speed,
         day: day,
+        high: high,
+        low: low,
         type: text,
         code: code,
         degree: temp,

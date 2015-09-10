@@ -11,7 +11,10 @@ const getURLParam = (oTarget, sVar) => {
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { units: 'F' };   // default
+    this.state = {
+      units: 'F',
+      moreDetail: false
+    };   // default
   }
 
   componentDidMount() {
@@ -43,17 +46,35 @@ export default class App extends Component {
   }
 
   componentDidUpdate() {
-    const $degreeElement = React.findDOMNode(this.refs.degree);
-    const fahrenheit = this.props.weather.degree;
-    const celsius = Math.floor((fahrenheit - 32) / 1.8);
+    const getCelsius = (f) => {
+      return Math.floor((f - 32) / 1.8);
+    }
 
-    if (fahrenheit !== '--') {
-      $degreeElement.innerHTML = (this.state.units === 'C') ? celsius : fahrenheit;
+    const $degreeElement = React.findDOMNode(this.refs.degree);
+    const $highTempElement = React.findDOMNode(this.refs.highTemp);
+    const $lowTempElement = React.findDOMNode(this.refs.lowTemp);
+
+    const {
+      degree,
+      high,
+      low
+    } = this.props.weather;
+
+    if (degree !== '--') {
+      $degreeElement.innerHTML = (this.state.units === 'C') ? getCelsius(degree) : degree;
+      $highTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(high) : high;
+      $lowTempElement.innerHTML = (this.state.units === 'C') ? getCelsius(low) : low;
     }
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
+  }
+
+  onClickLocationDetail(e) {
+    const currentTarget = e.currentTarget;
+    const toggleMoreDetail = ! this.state.moreDetail;
+    this.setState({moreDetail: toggleMoreDetail});
   }
 
   onClickTemperatureUnit(e) {
@@ -118,6 +139,8 @@ export default class App extends Component {
     const {
       local,
       date,
+      humidity,
+      windSpeed,
       type,
       degree,
       code,
@@ -144,17 +167,33 @@ export default class App extends Component {
             { mapping[code] }
           </div>
           <div className="weather-info">
-            <div className="weather-detail">
+            <div className="weather-detail"
+              onClick={ this.onClickLocationDetail.bind(this) }>
               <span className="weather-local">{ local }</span>
-              <span className="weather-date">{ date }</span>
-              <span className="weather-type">{ type }</span>
+              { ! this.state.moreDetail ?
+                <div className="weather-more">
+                  <div className="weather-moreTemp">
+                    <span className="weather-high" ref="highTemp">87</span>
+                    <span className="weather-low" ref="lowTemp">73</span>
+                  </div>
+                  <div className="weather-moreDetail">
+                    <span className="weather-windSpeed">&#9873; { humidity } mph</span>
+                    <span className="weather-humidity">&#9748; { windSpeed } g/m3</span>
+                  </div>
+                </div>
+              :
+                <div>
+                  <span className="weather-date">{ date }</span>
+                  <span className="weather-type">{ type }</span>
+                </div>
+              }
             </div>
             <div className="weather-temp">
               <span className="weather-degree">
                 <span ref="degree">{ degree }</span>
                 <span className="weather-temperature"
-                  onClick={this.onClickTemperatureUnit.bind(this)}>
-                    {this.state.units}
+                  onClick={ this.onClickTemperatureUnit.bind(this) }>
+                    { this.state.units }
                 </span>
               </span>
             </div>
