@@ -154,10 +154,10 @@ export default class App extends Component {
 
     const forecastNextDays = forecast.map((value, index) => {
       const currentDay = value.day.toUpperCase();
-      const isToday = (currentDay === day.toUpperCase()) ? true : false;
+      if (index > 5) { return null }
       return (
         <li key={index} ref={value}
-          className={classNames('weather-day', {'is-today': isToday})}>
+          className={classNames('weather-day', {'is-today': index === 0})}>
           <span className="weather-weekday">{ currentDay }</span>
           { mapping[value.code] }
         </li>
